@@ -55,7 +55,10 @@ function vidFullscreen() {
     }
 }
 
-playM3u8(window.location.href.split('#')[1]);
+var params = new URLSearchParams(window.location.search);
+var urlToPlay = params.get('url') || window.location.hash.slice(1) || null;
+if (urlToPlay) playM3u8(urlToPlay);
+
 $(window).on('load', function () {
     $('#video').on('click', function () {
         this.paused ? this.play() : this.pause();
