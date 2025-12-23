@@ -23,10 +23,4 @@ $(window).on('load', function () {
         history.replaceState(null, '', newUrl);
         window.location.href = './player' + '#' + val;
     });
-
-    if (params.get('url')) {
-        setTimeout(function () {
-            $('#form').submit();
-        }, 10);
-    }
 });
