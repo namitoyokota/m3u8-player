@@ -4,13 +4,13 @@ function playM3u8(url) {
     if (Hls.isSupported()) {
         video.volume = 0.3;
         var hls = new Hls();
-        var m3u8Url = decodeURIComponent(url);
+        var m3u8Url = url;
         hls.loadSource(m3u8Url);
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED, function () {
             video.play();
         });
-        document.title = url;
+        document.title = m3u8Url;
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = url;
         video.addEventListener('canplay', function () {
@@ -56,7 +56,7 @@ function vidFullscreen() {
 }
 
 var params = new URLSearchParams(window.location.search);
-var urlToPlay = params.get('url') || window.location.hash.slice(1) || null;
+var urlToPlay = params.get('url') || null;
 if (urlToPlay) playM3u8(urlToPlay);
 
 $(window).on('load', function () {

@@ -21,6 +21,6 @@ $(window).on('load', function () {
         else p.delete('url');
         var newUrl = window.location.pathname + (p.toString() ? '?' + p.toString() : '');
         history.replaceState(null, '', newUrl);
-        window.location.href = './player/index.html#' + encodeURIComponent(val || '');
+        window.location.href = './player/index.html' + (p.toString() ? '?' + p.toString() : '');
     });
 });
